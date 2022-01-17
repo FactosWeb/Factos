@@ -31,7 +31,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     //lombok 의존성추가
-    implementation 'mysql:mysql-connector-java'
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
+    //implementation 'mysql:mysql-connector-java'
     //Mysql 의존성추가
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     //JPA 의존성추가
