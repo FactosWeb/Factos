@@ -2,7 +2,7 @@ package com.factos.domain.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface F_Users_Repository extends JpaRepository<F_Users, String> {
+public interface F_Users_Repository extends JpaRepository<fUser, String> {
 
 }
 
