@@ -1,0 +1,51 @@
+:root {
+    --text-color: #f0f4f5;
+    --background-color: #263343;
+    --accent-color: orange;
+    --icons-color: rgb(152, 187, 201);
+    --bodybackground-color: WHite;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bodybackground-color);
+    font-family: 'STIX Two Math';
+}
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+h5{
+    color: brown;
+    font-size: 60px;
+}
+p{
+    font-size: 25px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 15px 30px;
+    font-family: 'STIX Two Math';
+}
+.information {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+}
+.information li{
+    padding: 8px 30px;
+}
+.navbar__menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-left: 10px;
+}
+.navbar__menu li {
+    padding: 2px 50px;
+}
