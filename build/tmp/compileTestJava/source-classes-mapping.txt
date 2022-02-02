@@ -1,6 +1,6 @@
 com/factos/web/HelloControllerTest.java
  com.factos.web.HelloControllerTest
-com/factos/web/dto/HelloResponseDtoTest.java
- com.factos.web.dto.HelloResponseDtoTest
 com/factos/web/domain/users/UsersRepositoryTest.java
  com.factos.web.domain.users.UsersRepositoryTest
+com/factos/web/dto/HelloResponseDtoTest.java
+ com.factos.web.dto.HelloResponseDtoTest
