@@ -40,6 +40,10 @@ p{
 .information li{
     padding: 8px 30px;
 }
+.information input{
+    padding: 4px 100px 5px 80px;
+    display: flex;
+}
 .navbar__menu {
     list-style: none;
     display: flex;

@@ -10,6 +10,10 @@ const NavigationBar = () => {
                     <div>
                         <a href=""><h5>Factos</h5></a>
                     </div>
+                    <div className="information">
+                    <input type="text" placeholder={"키워드를 입력하세요"}/>
+                    </div>
+                    <ul></ul>
                 </nav>
             </div>
             <div>
