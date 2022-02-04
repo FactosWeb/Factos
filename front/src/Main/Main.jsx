@@ -1,13 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component} from 'react'
+import Layout from "../Common/Layout";
 
-class Main extends Component {
+
+class Main extends Component{
     render() {
         return (
             <div>
-                <p>일단 메인페이지</p>
+                <Layout></Layout>
             </div>
+
         );
     }
 }
 
-export default Main;
+export default Main
