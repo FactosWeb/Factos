@@ -1,3 +1,4 @@
+/*
 import React, { Component} from 'react'
 import Layout from "../Common/Layout";
 
@@ -13,4 +14,4 @@ class Main extends Component{
     }
 }
 
-export default Main
+export default Main*/
