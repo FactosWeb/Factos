@@ -15,10 +15,4 @@ public class MainController {
         return "현재 서버시간은 "+new Date() +"입니다. \n";
     }
 
-    public class HelloController {
-        @GetMapping("/factos/testReact")
-        public List<String> testReact(){
-            return Arrays.asList("서버 포트는 8080", "리액트 포트는 3000");
-        }
-    }
 }

@@ -3,59 +3,65 @@ package com.factos.domain.users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 //lombok은 서비스 초기 구축 단계에서 테이블 설계의 변경이 빈번한데에 코드 변경량을 최소화시켜주어 좋음
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Getter
+@Setter
 @NoArgsConstructor //기본 생성자 자동 추가
 @Entity //테이블이 링크될 클래스임을 알림
-@IdClass(fUserKey.class)
+//@IdClass(fUserKey.class)
 @Table(name = "f_user")
 public class fUser implements Serializable {
 
+
+    private static final long serialVersionUID = 1L;
+
     @Id //PK임을 알림
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙 IDENTITY를 추가해줘야 auto_increment
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙 IDENTITY를 추가해줘야 auto_increment
     @Column(name = "user_id", length = 50, nullable = false)//column을 나타냄(굳이 없어도 default임) 사용하는 이유는 그 외적 기본값 변경이 필요할 떄
     private String user_Id;
     //유저아이디
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/*    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
     @Column(name = "user_Seq", length = 10, nullable = false)
     private String user_Seq;
     //유저 고유번호
+
 
     @Column(name = "user_name",length = 50, nullable = false)
     private String user_Name;
     //유저이름
 
-    @Column(name = "user_password", length = 20, nullable = false)
+    @Column(name = "user_password", length = 20)
     private String user_Password;
     //유저 비밀번호
 
-    @Column(name = "user_phone_no", length = 50, nullable = false)
+    @Column(name = "user_phone_no", length = 50)
     private String user_Phone_No;
     //유저 휴대폰 번호
 
-    @Column(name = "user_email", length = 50, nullable = false)
+    @Column(name = "user_email", length = 50)
     private String user_Email;
     //유저 이메일
 
-    @Column(name = "user_marketing_agree_yn",length = 10, nullable = false)
+    @Column(name = "user_marketing_agree_yn",length = 10)
     private String user_Marketing_Agree_Yn;
     //유저 마케팅 수신 동의
 
-    @Column(name = "user_nickname",length = 50, nullable = false)
+    @Column(name = "user_nickname",length = 50)
     private String user_Nickname;
     //유저 닉네임
 
-    @Column(name = "user_status_cd",length = 10, nullable = false)
+    @Column(name = "user_status_cd",length = 10)
     private String user_Status_Cd;
     //유저 유저 상태값
 
-    @Column(name = "USER_ACCESS_CD",length = 10, nullable = false)
+    @Column(name = "USER_ACCESS_CD",length = 10)
     private String user_Access_Cd;
     //유저 권한 코드
 
@@ -86,6 +92,10 @@ public class fUser implements Serializable {
         this.user_Status_Cd = user_Status_Cd;
         this.user_Phone_No = user_Phone_No;
 
+    }
+
+    public void update(String user_Name){
+        this.user_Name = user_Name;
     }
 }
 
