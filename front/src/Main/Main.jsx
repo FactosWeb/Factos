@@ -1,5 +1,6 @@
+
 import React, { Component} from 'react'
-import Layout from "../Common/Layout";
+import Layout from "../Route/Layout";
 
 
 class Main extends Component{
