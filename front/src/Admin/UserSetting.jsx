@@ -21,8 +21,8 @@ function UserSetting() {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({
-            user_Id: "jaeseok",
-            user_Name: "바껴라"
+            user_Id: "jaewon",
+            user_Name: "찾는 중"
         })
     })
         .then(response => console.log("response"))
@@ -40,7 +40,6 @@ function UserSetting() {
                  {message.map((text, index) => <li key={`${index}-${text.user_Nickname}`}>{text.user_Nickname}</li>)}
             </ul>
         </div>
-
     );
 }
 
