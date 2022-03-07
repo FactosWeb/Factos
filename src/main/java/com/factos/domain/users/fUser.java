@@ -20,14 +20,14 @@ public class fUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id //PK임을 알림
-    //@GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙 IDENTITY를 추가해줘야 auto_increment
+//    @Id //PK임을 알림
+//    @GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙 IDENTITY를 추가해줘야 auto_increment
     @Column(name = "user_id", length = 50, nullable = false)//column을 나타냄(굳이 없어도 default임) 사용하는 이유는 그 외적 기본값 변경이 필요할 떄
     private String user_Id;
     //유저아이디
 
-/*    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_Seq", length = 10, nullable = false)
     private String user_Seq;
     //유저 고유번호
@@ -49,6 +49,7 @@ public class fUser implements Serializable {
     private String user_Email;
     //유저 이메일
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_marketing_agree_yn",length = 10)
     private String user_Marketing_Agree_Yn;
     //유저 마케팅 수신 동의
@@ -57,6 +58,7 @@ public class fUser implements Serializable {
     private String user_Nickname;
     //유저 닉네임
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_status_cd",length = 10)
     private String user_Status_Cd;
     //유저 유저 상태값
