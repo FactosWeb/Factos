@@ -1,0 +1,17 @@
+.MainTableDiv {
+    width: 100%;
+    color: black;
+    float: right;
+    width: 80%;
+}
+
+.MainTable {
+    margin-top: 100px;
+    width: 90%;
+    border-collapse: collapse;
+    position: relative;
+}
+
+.MainTable th, td {
+    border: 1px solid black;
+}

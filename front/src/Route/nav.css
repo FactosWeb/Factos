@@ -53,3 +53,19 @@ p{
 .navbar__menu li {
     padding: 2px 50px;
 }
+
+.leftInfoBarInner {
+    display: block;
+    float: left;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    color: #61dafb;
+    width: 20%;
+    overflow: hidden;
+    color: black;
+}
+
+.leftInfoBarInner a {
+    color: black;
+}
