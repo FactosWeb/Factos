@@ -3,10 +3,7 @@ import {useEffect, useState} from "react";
 import Admin from "./Admin.css"
 import AdminLayout from "../Route/AdminLayout";
 import axios from "axios";
-<<<<<<< HEAD
 
-=======
->>>>>>> d704a46473cac200fa1248180dfaa0fb9cc851f4
 function UserSetting() {
 
     const [UserList, setUserList] = useState(null);
@@ -28,11 +25,7 @@ function UserSetting() {
 
 
     return (
-<<<<<<< HEAD
         UserList && (
-=======
-        UserList &&(
->>>>>>> d704a46473cac200fa1248180dfaa0fb9cc851f4
             <div>
                 <AdminLayout/>
                 <div className="MainTableDiv">
@@ -52,7 +45,6 @@ function UserSetting() {
                     <button>검색</button>
                     <table className="MainTable">
                         <thead>
-<<<<<<< HEAD
                         <tr>
                             <th>No</th>
                             <th>회원번호</th>
@@ -62,17 +54,6 @@ function UserSetting() {
                             <th>회원상태</th>
                             <th>회원상태변경</th>
                         </tr>
-=======
-                            <tr>
-                                <th>No</th>
-                                <th>회원번호</th>
-                                <th>회원ID</th>
-                                <th>회원이름</th>
-                                <th>회원닉네임</th>
-                                <th>회원상태</th>
-                                <th>회원상태변경</th>
-                            </tr>
->>>>>>> d704a46473cac200fa1248180dfaa0fb9cc851f4
                         </thead>
                         <tbody>
                         {UserList.length > 0 ? (
@@ -84,7 +65,6 @@ function UserSetting() {
                                     <td>{User.user_Name}</td>
                                     <td>{User.user_Nickname}</td>
                                     <td> {
-<<<<<<< HEAD
                                         (function () {
                                             if (User.user_Status_Cd == '10') {
                                                 return ("정상")
@@ -93,31 +73,16 @@ function UserSetting() {
                                             } else if (User.user_Status_Cd == '30') {
                                                 return ("휴면")
                                             } else {
-=======
-                                        (function(){
-                                            if(User.user_Status_Cd == '10'){
-                                                return ("정상")
-                                            }else if(User.user_Status_Cd == '20'){
-                                                return ("제한")
-                                            }else if(User.user_Status_Cd == '30'){
-                                                return ("휴면")
-                                            }else{
->>>>>>> d704a46473cac200fa1248180dfaa0fb9cc851f4
                                                 return ("탈퇴")
                                             }
                                         })()
                                     }
                                     </td>
                                     <td>
-<<<<<<< HEAD
                                         <button>회원삭제</button>
                                         &nbsp;&nbsp;
                                         <button>활동복귀</button>
                                         &nbsp;&nbsp;
-=======
-                                        <button>회원삭제</button>&nbsp;&nbsp;
-                                        <button>활동복귀</button>&nbsp;&nbsp;
->>>>>>> d704a46473cac200fa1248180dfaa0fb9cc851f4
                                         <button>활동제한</button>
                                     </td>
                                 </tr>
