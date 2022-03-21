@@ -107,10 +107,9 @@ const SignUp = (props: any) => {
             super(props)
             this.myRef = React.createRef()
         }
-
         handleSubmit = (event) => {
             event.preventDefault()
-            this.myRef.current.setState({value: ''})
+            this.myRef.current.setState({initialValues: ''})
             event.target.reset()
         }
     }
