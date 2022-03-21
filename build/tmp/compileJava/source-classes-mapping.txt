@@ -13,18 +13,18 @@ com/factos/web/dto/UsersUpdateRequestDto.java
  com.factos.web.dto.UsersUpdateRequestDto$UsersUpdateRequestDtoBuilder
 com/factos/Application.java
  com.factos.Application
-com/factos/web/dto/UserSignUpDto.java
- com.factos.web.dto.UserSignUpDto
- com.factos.web.dto.UserSignUpDto$UserSignUpDtoBuilder
 com/factos/web/dto/UsersResponseDto.java
  com.factos.web.dto.UsersResponseDto
-com/factos/service/UsersService.java
- com.factos.service.UsersService
 com/factos/web/dto/UsersSaveRequestDto.java
  com.factos.web.dto.UsersSaveRequestDto
  com.factos.web.dto.UsersSaveRequestDto$UsersSaveRequestDtoBuilder
 com/factos/domain/users/fUser.java
  com.factos.domain.users.fUser
  com.factos.domain.users.fUser$fUserBuilder
+com/factos/web/dto/UserSignUpDto.java
+ com.factos.web.dto.UserSignUpDto
+ com.factos.web.dto.UserSignUpDto$UserSignUpDtoBuilder
+com/factos/service/UsersService.java
+ com.factos.service.UsersService
 com/factos/web/UsersController.java
  com.factos.web.UsersController

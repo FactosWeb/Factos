@@ -2,10 +2,12 @@ package com.factos.domain.users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface F_Users_Repository extends JpaRepository<fUser, String> {
     //public List<fUser> findfUserByuserSeq(String UserSeq);
-
+    List<UserMapping> findByUser_Id();
 }
 //DB Layer 접근   자
 //인터페이스로 생성

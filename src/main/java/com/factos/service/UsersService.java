@@ -4,20 +4,14 @@ import com.factos.domain.users.F_Users_Repository;
 import com.factos.domain.users.fUser;
 import com.factos.web.dto.UserSignUpDto;
 import com.factos.web.dto.UsersResponseDto;
-import com.factos.web.dto.UsersSaveRequestDto;
 import com.factos.web.dto.UsersUpdateRequestDto;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -62,8 +56,18 @@ public class UsersService {
         user.setUser_Email(userSignUpDto.getUser_Email());
         user.setUser_Nickname(userSignUpDto.getUser_Nickname());
         user.setUser_Password(userSignUpDto.getUser_Password());
+        user.setUser_Name(userSignUpDto.getUser_Name());
+        user.setUser_Phone_No(userSignUpDto.getUser_Phone_No());
+        user.setUser_Access_Cd(userSignUpDto.getUser_Access_Cd());
+        user.setUser_Marketing_Agree_Yn(userSignUpDto.getUser_Marketing_Agree());
+        user.setUser_Status_Cd(userSignUpDto.getUser_Status_Cd());
+
         usersRepository.save(user);
 
         return user.getUser_Id() + "회원가입이 되었습니다";
+    }
+
+    public List<UserMapping> userIdCheck(UserSignUpDto userSignUpDto) {
+        return usersRepository.findByUser_Id();
     }
 }
