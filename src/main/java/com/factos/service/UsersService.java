@@ -67,7 +67,7 @@ public class UsersService {
         return user.getUser_Id() + "회원가입이 되었습니다";
     }
 
-    public List<UserMapping> userIdCheck(UserSignUpDto userSignUpDto) {
-        return usersRepository.findByUser_Id();
-    }
+//    public List<UserMapping> userIdCheck(UserSignUpDto userSignUpDto) {
+//        return usersRepository.findByUser_Id();
+//    }
 }
