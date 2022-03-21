@@ -16,7 +16,6 @@ const axiosApi = (values: any, values2: any, values3: any) => {
     });
 }
 
-
 const SignUp = (props: any) => {
     const idRegExp = /^[a-zA-z0-9]$/;
     const phoneRegEXp = /^[0-9]&/;
@@ -37,8 +36,8 @@ const SignUp = (props: any) => {
             .required("이름을 입력하세요!"),
         // user_Phone_No: Yup
         //     .string()
-        //     .matches(phoneRegEXp, '휴대폰 번호는 숫자로 이루어져야합니다.')
-        //     .require("휴대폰 번호를 입력하세요"),
+        // .matches(phoneRegEXp, '휴대폰 번호는 숫자로 이루어져야합니다.')
+        // .require("휴대폰 번호를 입력하세요"),
         user_Password: Yup
             .string()
             .required("패스워드를 입력하세요!"),
@@ -54,11 +53,10 @@ const SignUp = (props: any) => {
         form.append('user_Id', user_Id);
         try {
             axiosApi(form, '/userIdCheck', 'get');
-            if(form.get(user_Id))
-                form.
-            alert('아이디가 중복되었습니다.', {
-                position: "top-center",
-            });
+            if (form.get(user_Id))
+                form.alert('아이디가 중복되었습니다.', {
+                    position: "top-center",
+                });
         } catch (e) {
             alert('사용할 수 있는 아이디입니다.', {
                 position: "top-center",
@@ -107,6 +105,7 @@ const SignUp = (props: any) => {
             super(props)
             this.myRef = React.createRef()
         }
+
         handleSubmit = (event) => {
             event.preventDefault()
             this.myRef.current.setState({initialValues: ''})
