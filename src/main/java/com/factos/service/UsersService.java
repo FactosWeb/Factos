@@ -2,6 +2,7 @@ package com.factos.service;
 
 import com.factos.domain.users.F_Users_Repository;
 import com.factos.domain.users.fUser;
+import com.factos.web.dto.UserIdCheckDto;
 import com.factos.web.dto.UserSignUpDto;
 import com.factos.web.dto.UsersResponseDto;
 import com.factos.web.dto.UsersUpdateRequestDto;
@@ -47,6 +48,12 @@ public class UsersService {
     public void deleteUser(String userId) {
         usersRepository.deleteById(userId);
     }
+
+
+//    public UserIdCheckDto checkIdDuplicate(String user_Id) {
+//        String user_id = usersRepository.findById(user_id).orElseThrow(() -> new IllegalArgumentException("뭐지"));
+//        return new UserIdCheckDto(user_Id);
+//    }
 
     @Transactional
     public String signUpUser(UserSignUpDto userSignUpDto) {

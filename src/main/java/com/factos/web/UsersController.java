@@ -2,17 +2,12 @@ package com.factos.web;
 
 import com.factos.domain.users.F_Users_Repository;
 import com.factos.domain.users.fUser;
-import com.factos.domain.users.fUserKey;
 import com.factos.service.UsersService;
-import com.factos.web.dto.UserSignUpDto;
-import com.factos.web.dto.UsersResponseDto;
-import com.factos.web.dto.UsersSaveRequestDto;
-import com.factos.web.dto.UsersUpdateRequestDto;
+import com.factos.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -65,14 +60,25 @@ public class UsersController {
 //        return userInfoList;
 //    }
 
-    @PostMapping("/signUpUser")
-    public String userSignUp( UserSignUpDto userSignUpDto){
+    @GetMapping("/user/login")
+    public Boolean loginUser(UserLoginDto userLoginDto) {
+
+        return false;
+    }
+
+    @PostMapping("/user/checkIdUser")
+    public UsersResponseDto idCheckUser(@PathVariable String user_Id) {
+        return usersService.findById(user_Id);
+    }
+
+    @PostMapping("/user/signUpUser")
+    public String signUpUser(UserSignUpDto userSignUpDto) {
         return usersService.signUpUser(userSignUpDto);
     }
 
     /*    @GetMapping("/getUser")
     public List<fUser> findUser (){
-        fUserKey pk = new fUserKey();
+        fUserKey pk = new fUserKey();Q:q1
         pk.setUser_Seq("jaeseok");
         pk.setUser_Id("1");
         usersRepository.findAllById((Iterable<String>) pk);
