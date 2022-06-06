@@ -16,7 +16,7 @@ const FactosRouter = () => {
                     <Route path="/main" element ={<Main/>} />
                     <Route path="/login" element ={<Login/>} />
                     <Route path="/SignUp" element ={<SignUp/>} />
-                    <Route path="/Term" element ={<Terms/>} />
+                    <Route path="/Terms" element ={<Terms/>} />
                     <Route path="/UserSetting" element ={<UserSetting/>} />
                     <Route path="/BoardSetting" element ={<BoardSetting/>} />
                     <Route path="/CommentSetting" element ={<CommentSetting/>} />

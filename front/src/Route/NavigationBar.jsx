@@ -31,14 +31,11 @@ const NavigationBar = () => {
 
                     <ul className="information">
                         <li><a href="/login">로그인</a></li>
-                        <li><a href="/signup">회원가입</a></li>
+                        <li><a href="/terms">회원가입</a></li>
                     </ul>
                 </nav>
             </div>
-
-
         </header>
-
     );
 };
 

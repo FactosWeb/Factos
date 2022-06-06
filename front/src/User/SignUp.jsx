@@ -1,19 +1,9 @@
-import React, {Component, useEffect, useState} from 'react';
+import React from 'react';
 import axios from "axios";
 import * as Yup from "yup";
 import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
-
-
-// const handleToast = () => {
-//     setToastStatus(true);
-// };
-// useEffect(() => {
-//     if (ToastStatus) {
-//         setTimeout(() => setToastStatus(false), 1000);
-//     }
-// }, [ToastStatus]);
 
 const form = new FormData();
 
@@ -199,18 +189,18 @@ const SignUp = (props: any) => {
                                 <ErrorMessage name="user_Marketing_Agree"/>
                             </div>
                         </Form.Item>
-                        {/*<Form.Item className="input-form" label="유저 접근권한">*/}
-                        {/*    < value={values.user_Access_Cd} name="user_Access_Cd" onChange={handleChange}/>*/}
-                        {/*    <div className="error-message">*/}
-                        {/*        <ErrorMessage name="user_Access_Cd"/>*/}
-                        {/*    </div>*/}
-                        {/*</Form.Item>*/}
-                        {/*<Form.Item className="input-form" label="약관">*/}
-                        {/*    <Checkbox value={values.user_Status_Cd} name="user_Status_Cd" onChange={handleChange}/>*/}
-                        {/*    <div className="error-message">*/}
-                        {/*        <ErrorMessage name="user_Status_Cd"/>*/}
-                        {/*    </div>*/}
-                        {/*</Form.Item>*/}
+                        <Form.Item className="input-form" label="유저 접근권한">
+                            <Checkbox value={values.user_Access_Cd} name="user_Access_Cd" onChange={handleChange}/>
+                            <div className="error-message">
+                                <ErrorMessage name="user_Access_Cd"/>
+                            </div>
+                        </Form.Item>
+                        <Form.Item className="input-form" label="약관">
+                            <Checkbox value={values.user_Status_Cd} name="user_Status_Cd" onChange={handleChange}/>
+                            <div className="error-message">
+                                <ErrorMessage name="user_Status_Cd"/>
+                            </div>
+                        </Form.Item>
                         <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Submit
@@ -222,5 +212,4 @@ const SignUp = (props: any) => {
         </Formik>
     );
 }
-
 export default SignUp;
