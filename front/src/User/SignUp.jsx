@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import axios from "axios";
 import * as Yup from "yup";
 import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
+import {useBeforeunload} from "react-beforeunload"; //이걸로 새로고침이나 뒤로가기했을 때 폼 초기화
 
 const form = new FormData();
+
 
 const axiosApi = (values: form, values2: any, values3: any) => {
     axios({
@@ -18,8 +20,23 @@ const axiosApi = (values: form, values2: any, values3: any) => {
     });
 }
 
+const BeforeUnloadMethod =() => {
+    const preventClose = (e: BeforeUnloadEvent) => {
+        e.preventDefault();
+        e.returnValue = ""; //Chrome에서 동작하도록;deprecated
+    };
+    useEffect(() => {
+        (() => {
+            window.addEventListener("beforeunload", preventClose);
+        })();
+        return () => {
+            window.removeEventListener("beforeunload", preventClose);
+        };
+    }, []);
+}
+
 const SignUp = (props: any) => {
-    const idRegExp =  /^[a-zA-Z][a-zA-Z0-9]+$/; //첫 글자는 영문자로 시작해야하며 숫자를 포함할 수 있다.
+    const idRegExp = /^[a-zA-Z][a-zA-Z0-9]+$/; //첫 글자는 영문자로 시작해야하며 숫자를 포함할 수 있다.
     const phoneRegEXp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
     const validationSchema = Yup.object().shape({
@@ -108,7 +125,7 @@ const SignUp = (props: any) => {
         }
     }
     return (
-
+        BeforeUnloadMethod(),
         <Formik
             initialValues={{
                 user_Id: "",
@@ -182,25 +199,20 @@ const SignUp = (props: any) => {
                                 <ErrorMessage name="user_Name"/>
                             </div>
                         </Form.Item>
-                        <Form.Item className="input-form" label="약관">
-                            <Button value={values.user_Marketing_Agree} name="user_Marketing_Agree"
-                                    onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="user_Marketing_Agree"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="유저 접근권한">
-                            <Checkbox value={values.user_Access_Cd} name="user_Access_Cd" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="user_Access_Cd"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="약관">
-                            <Checkbox value={values.user_Status_Cd} name="user_Status_Cd" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="user_Status_Cd"/>
-                            </div>
-                        </Form.Item>
+                        {/*<Form.Item className="input-form" label="약관">*/}
+                        {/*    <Button value={values.user_Marketing_Agree} name="user_Marketing_Agree"*/}
+                        {/*            onChange={handleChange}/>*/}
+                        {/*    <div className="error-message">*/}
+                        {/*        <ErrorMessage name="user_Marketing_Agree"/>*/}
+                        {/*    </div>*/}
+                        {/*</Form.Item>*/}
+                        {/*<Form.Item className="input-form" label="유저 접근권한">*/}
+                        {/*    <Checkbox value={values.user_Access_Cd} name="user_Access_Cd" onChange={handleChange}/>*/}
+                        {/*    <div className="error-message">*/}
+                        {/*        <ErrorMessage name="user_Access_Cd"/>*/}
+                        {/*    </div>*/}
+                        {/*</Form.Item>*/}
+
                         <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Submit
