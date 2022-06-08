@@ -2,7 +2,6 @@ package com.factos.service;
 
 import com.factos.domain.users.F_Users_Repository;
 import com.factos.domain.users.fUser;
-import com.factos.web.dto.UserIdCheckDto;
 import com.factos.web.dto.UserSignUpDto;
 import com.factos.web.dto.UsersResponseDto;
 import com.factos.web.dto.UsersUpdateRequestDto;

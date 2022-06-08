@@ -72,18 +72,6 @@ function Terms() {
         height: '100%',
         width: '80%'
     }
-    const preventClose = (e: BeforeUnloadEvent) => {
-        e.preventDefault();
-        e.returnValue = ""; //Chrome에서 동작하도록;deprecated
-    };
-    useEffect(() => {
-        (() => {
-            window.addEventListener("beforeunload", preventClose);
-        })();
-        return () => {
-            window.removeEventListener("beforeunload", preventClose);
-        };
-    }, []);
 
     return (
         <div>
@@ -95,7 +83,7 @@ function Terms() {
                               style={{height: '100%', width: '80%', resize: "none"}} rows={20}></textarea>
                 </div>
                 <div>
-                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={termCheck}
+                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={termCheck} autocomplete="off"
                                                          type="checkbox" onChange={termBtnEvent}/>이용약관을 읽었으며,해당 내용에
                         동의합니다 <strong>(필수)</strong>
                     </p>
@@ -107,12 +95,12 @@ function Terms() {
                               style={{height: '100%', width: '80%', resize: "none"}} rows={20}></textarea>
                 </div>
                 <div>
-                    <p style={{fontSize: '20px'}}><input name="personalCheck" checked={personalCheck}
+                    <p style={{fontSize: '20px'}}><input name="personalCheck" checked={personalCheck} autocomplete="off"
                                                          type="checkbox" onChange={personalBtnEvent}/>이용약관을 확인하였으며,
                         약관에
                         동의합니다 <strong>(필수)</strong></p>
                     <br/>
-                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={allCheck} value={"selectAll"}
+                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={allCheck} value={"selectAll"} autocomplete="off"
                                                          type="checkbox" onChange={allBtnEvent}/>모든 약관에 동의합니다</p>
                 </div>
                 <div><input style={nextButtonStyle} type="submit" disabled={disable} value={"다음"}/></div>

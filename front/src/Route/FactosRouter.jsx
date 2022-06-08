@@ -12,8 +12,6 @@ const FactosRouter = () => {
         <div>
             <BrowserRouter>
                 <Routes>
-
-                    <Route path="/main" element ={<Main/>} />
                     <Route path="/login" element ={<Login/>} />
                     <Route path="/SignUp" element ={<SignUp/>} />
                     <Route path="/Terms" element ={<Terms/>} />

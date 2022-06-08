@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
-import {useBeforeunload} from "react-beforeunload"; //이걸로 새로고침이나 뒤로가기했을 때 폼 초기화
+import useModal from "antd/es/modal/useModal";
 
 const form = new FormData();
 
