@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import data from "bootstrap/js/src/dom/data";
-
+import './Login.css';
 const form = new FormData();
 
-const axiosApi = (values: form, values2: any, values3: any) => {
+// const axiosApi = (values: form, values2: any, values3: any) => {
 
-    axios({
-        header: {
-            'Content-type': 'application/json'
-        },
-        data  : form,
-        url   : values2,
-        method: values3,
-    });
-}
+//     axios({
+//         header: {
+//             'Content-type': 'application/json'
+//         },
+//         data  : form,
+//         url   : values2,
+//         method: values3,
+//     });
+// }
 
 //usetstate함수는 객체 형태를 받아야한다.
 const Login = () => {
