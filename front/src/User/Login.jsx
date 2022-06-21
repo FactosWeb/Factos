@@ -33,12 +33,13 @@ const Login = () => {
     // login 버튼 클릭 이벤트
     const onClickLogin = () => {
         const data = {
+            id : inputId,
+            password : inputPw
         };
-        axiosApi()
+        axiosApi(data, '', 'GET');
         console.log('click login')
     }
     //axios 사용해서 id랑 비밀번호 넘기셈
-    //시큐리티 사용할거니까 id만 보내면 될 듯
     return (
         <div>
             <h2>Login</h2>

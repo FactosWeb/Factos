@@ -3,8 +3,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
-import {Form, Input, Button, Checkbox} from 'antd'
-import useModal from "antd/es/modal/useModal";
+import {Form, Input, Button} from 'antd'
 
 const form = new FormData();
 
@@ -109,8 +108,7 @@ const SignUp = (props: any) => {
     }
 
     const UserIdCheckUP = async (values: any) => {
-        const form = new FormData();
-        const {user_Id} = values;
+        const { user_Id } = values;
         form.append('user_Id', user_Id);
         try {
             axiosApi(form, '/user/checkIdUser', 'post');

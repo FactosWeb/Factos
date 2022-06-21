@@ -1,4 +1,4 @@
-package com.factos.web.dto;
+package com.factos.web.dto.users;
 
 import com.factos.domain.users.fUser;
 import lombok.Builder;
@@ -15,10 +15,11 @@ import javax.validation.constraints.Pattern;
 public class UserSignUpDto {
 
     private String user_Id;
+
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
-
     private String user_Password;
+
     private String user_Nickname;
     private String user_Email;
     private String user_Phone_No;
@@ -26,7 +27,6 @@ public class UserSignUpDto {
     private String user_Marketing_Agree;
     private String user_Access_Cd;
     private String user_Status_Cd;
-
 
     @Builder
     public UserSignUpDto(String user_Id, String user_Nickname,

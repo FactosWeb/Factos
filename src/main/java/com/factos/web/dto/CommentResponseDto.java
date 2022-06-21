@@ -2,10 +2,12 @@ package com.factos.web.dto;
 
 import com.factos.domain.users.fComment;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
 public class CommentResponseDto {
     private String cm_No;
     private String cm_Status_Cd;
@@ -15,6 +17,7 @@ public class CommentResponseDto {
     private String cm_Create_User_Id;
     private String cm_Content;
     private Date cm_Create_Date;
+
 
     public CommentResponseDto(fComment entity){
         this.cm_No = entity.getCm_No();

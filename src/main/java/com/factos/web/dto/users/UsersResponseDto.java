@@ -1,4 +1,4 @@
-package com.factos.web.dto;
+package com.factos.web.dto.users;
 
 import com.factos.domain.users.fUser;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.factos.web.dto;
+package com.factos.web.dto.users;
 
 public class UserIdCheckDto {
 
