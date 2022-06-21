@@ -25,11 +25,6 @@ public class UsersController {
         return usersService.update(requestDto);
     }
 
-//    @GetMapping("/getUserAllList")
-//    public List<fUser> findAll() {
-//        return usersService.findAll();
-//    }
-
     @PostMapping("/deleteAllUser")
     public void deleteAlluser() {
         usersService.deleteAlluser();
