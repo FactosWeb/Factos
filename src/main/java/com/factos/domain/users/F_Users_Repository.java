@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Repository
 public interface F_Users_Repository extends JpaRepository<fUser, String> {
-    Optional<fUser> findByUserId(fUser paramData);
+    Optional<fUser> findByUserId(fUser paramData); //오류남 jpa 확인필요
 
 }
 //DB Layer 접근   자
