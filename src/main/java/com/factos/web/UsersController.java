@@ -2,7 +2,6 @@ package com.factos.web;
 
 import com.factos.domain.users.fUser;
 import com.factos.service.UsersService;
-import com.factos.web.dto.ResponseDto;
 import com.factos.web.dto.users.UserLoginDto;
 import com.factos.web.dto.users.UserSignUpDto;
 import com.factos.web.dto.users.UsersUpdateRequestDto;
@@ -26,36 +25,30 @@ public class UsersController {
         return usersService.update(requestDto);
     }
 
-    @PostMapping("/deleteAllUser")
-    public void deleteAlluser() {
-        usersService.deleteAlluser();
-    }
-
-    @PostMapping("/deleteUser/{userId}")
-    public void deleteUser(@PathVariable String userId) {
-        usersService.deleteUser(userId);
+    @PostMapping("/deleteUser/{user_Id}")
+    public ResponseEntity deleteUser(@PathVariable("user_Id") String user_Id) {
+        try {
+            usersService.deleteUser(user_Id);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("/user/login")
-    public Boolean loginUser(UserLoginDto userLoginDto) {
-
-        return false;
-    }
-
-    @PostMapping("/user/checkIdUser")
-    public ResponseEntity idCheckUser(@PathVariable String user_Id)
-    {
-        ResponseDto dto = new ResponseDto();
+    public ResponseEntity loginUser(fUser paramData) {
         try {
-            dto.setData();
-            dto.setStatus(HttpStatus.OK);
-            dto.setData();
-            dto.setData();
+            usersService.findById(paramData);
+            return new ResponseEntity(HttpStatus.OK);
         }
         catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
+
     @PostMapping("/user/signUpUser")
     public int signUpUser(UserSignUpDto userSignUpDto) {
         return usersService.signUpUser(userSignUpDto);

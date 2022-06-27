@@ -28,11 +28,13 @@ public class UsersService {
         List<fUser> userList = new ArrayList<>();
         return userList;
     }
-
-    public UsersResponseDto findById(String userId) {
-        fUser entity = usersRepository.findById(userId)
+    /**
+     * User Login
+     * */
+    public UsersResponseDto findById(fUser paramData) {
+        usersRepository.findByUserId(paramData)
                 .orElseThrow(() -> new IllegalArgumentException("없다"));
-        return new UsersResponseDto(entity);
+        return new UsersResponseDto(paramData);
     }
 
     public List<fUser> findAll() {
@@ -41,19 +43,9 @@ public class UsersService {
         return entity;
     }
 
-    public void deleteAlluser() {
-        usersRepository.deleteAll();
+    public void deleteUser(String paramData){
+        usersRepository.deleteById(paramData);
     }
-
-    public void deleteUser(String userId) {
-        usersRepository.deleteById(userId);
-    }
-
-
-//    public UserIdCheckDto checkIdDuplicate(String user_Id) {
-//        String user_id = usersRepository.findById(user_id).orElseThrow(() -> new IllegalArgumentException("뭐지"));
-//        return new UserIdCheckDto(user_Id);
-//    }
 
     @Transactional
     public int signUpUser(UserSignUpDto userSignUpDto) {
@@ -78,7 +70,4 @@ public class UsersService {
         }
     }
 
-//    public List<UserMapping> userIdCheck(UserSignUpDto userSignUpDto) {
-//        return usersRepository.findByUser_Id();
-//    }
 }
