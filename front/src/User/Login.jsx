@@ -36,7 +36,7 @@ const Login = () => {
             id : inputId,
             password : inputPw
         };
-        axiosApi(data, '', 'GET');
+        axiosApi(data, '/user/login', 'GET');
         console.log('click login')
     }
     //axios 사용해서 id랑 비밀번호 넘기셈
