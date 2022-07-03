@@ -1,8 +1,7 @@
 package com.factos.web.domain.users;
 
-import com.factos.domain.users.fUser;
-import com.factos.domain.users.F_Users_Repository;
-import org.junit.After;
+import com.factos.domains.user.fUser;
+import com.factos.domains.user.F_Users_Repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

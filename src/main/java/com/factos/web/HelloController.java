@@ -1,7 +1,6 @@
 package com.factos.web;
 
-import com.factos.domain.users.F_Users_Repository;
-import com.factos.domain.users.fUser;
+import com.factos.domains.user.F_Users_Repository;
 import com.factos.web.dto.HelloResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

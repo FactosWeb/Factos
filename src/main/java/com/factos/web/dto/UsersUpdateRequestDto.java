@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UsersUpdateRequestDto {
-    private String user_Id;
-    private String user_Name;
+    private String userId;
+    private String userName;
 
     @Builder
-    public UsersUpdateRequestDto(String user_Name){
-        this.user_Id = user_Id;
-        this.user_Name = user_Name;
+    public UsersUpdateRequestDto(String userId, String userName){
+        this.userId = userId;
+        this.userName = userName;
     }
 }

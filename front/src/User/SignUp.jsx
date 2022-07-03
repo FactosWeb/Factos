@@ -1,24 +1,21 @@
 import React, {useEffect} from 'react';
-import axios from "axios";
 import * as Yup from "yup";
 import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
-import {useBeforeunload} from "react-beforeunload"; //이걸로 새로고침이나 뒤로가기했을 때 폼 초기화
-
+import axiosAPI from '../Common/CommonAxios';
 const form = new FormData();
 
-
-const axiosApi = (values: form, values2: any, values3: any) => {
-    axios({
-        header: {
-            'Content-type': 'application/json'
-        },
-        data: form,
-        url: values2,
-        method: values3,
-    });
-}
+// const axiosApi = (values: form, values2: any, values3: any) => {
+//     axios({
+//         header: {
+//             'Content-type': 'application/json'
+//         },
+//         data: form,
+//         url: values2,
+//         method: values3,
+//     });
+// }
 
 const BeforeUnloadMethod =() => {
     const preventClose = (e: BeforeUnloadEvent) => {
@@ -41,29 +38,29 @@ const SignUp = (props: any) => {
 
     const validationSchema = Yup.object().shape({
 
-        user_Email: Yup
+        userEmail: Yup
             .string()
             .email("올바른 이메일 형식이 아닙니다!")
             .required("이메일을 입력하세요!"),
-        user_Id: Yup
+        userId: Yup
             .string()
             .matches(idRegExp, '아이디는 영문자로 시작해야하며 영문자 또는 숫자만 사용 가능합니다.')
             .min(4, '아이디는 4글자에서 20글자까지 가능합니다.')
             .max(20, '아이디는 4글자에서 20글자까지 가능합니다.')
             .required("아이디를 입력하세요!"),
-        user_Nickname: Yup
+        userNickname: Yup
             .string()
             .required("이름을 입력하세요!"),
-        user_Phone_No: Yup
+        userPhone_No: Yup
             .string()
             .matches(phoneRegEXp, '올바른 휴대폰 번호형식이 아닙니다.')
             .required("휴대폰 번호를 입력하세요"),
-        user_Password: Yup
+        userPassword: Yup
             .string()
             .required("패스워드를 입력하세요!"),
         password2: Yup
             .string()
-            .oneOf([Yup.ref('user_Password'), null],
+            .oneOf([Yup.ref('userPassword'), null],
                 '비밀번호가 일치하지 않습니다')
             .required("필수 입력 값입니다!")
     })
@@ -73,29 +70,32 @@ const SignUp = (props: any) => {
 
         console.log(values);
         const {
-            user_Id,
-            user_Email,
-            user_Password,
-            user_Nickname,
-            user_Name,
-            user_Phone_No,
-            user_Status_Cd,
-            user_Access_Cd,
-            user_Marketing_Agree
+            userId,
+            userEmail,
+            userPassword,
+            userNickname,
+            userName,
+            userPhoneNo,
+            userStatusCd,
+            userAccessCd,
+            userMarketingAgree
         } = values;
 
-        form.append('user_Id', user_Id);
-        form.append('user_Nickname', user_Nickname);
-        form.append('user_Password', user_Password);
-        form.append('user_Email', user_Email);
-        form.append('user_Phone_No', user_Phone_No);
-        form.append('user_Name', user_Name);
-        form.append('user_Access_Cd', user_Access_Cd);
-        form.append('user_Status_Cd', user_Status_Cd);
-        form.append('user_Marketing_Agree', user_Marketing_Agree);
-
+        const params = {
+            userId : userId,
+            userName: userName,
+            userEmail: userEmail,
+            userPassword: userPassword,
+            userMarketingAgree: userMarketingAgree,
+            userAccessCd: userAccessCd,
+            userPhoneNo: userPhoneNo,
+            userStatusCd: userStatusCd,
+            userNickname: userNickname
+        }
+        
         try {
-            axiosApi(form, '/user/signUpUser', 'post');
+            const res = await axiosAPI.post("/user/signUpUser", params)
+            console.log(res.data)
 
             alert('회원등록 완료하였습니다. 로그인 하세요', {
                 position: "top-center",
@@ -110,10 +110,10 @@ const SignUp = (props: any) => {
 
     const UserIdCheckUP = async (values: any) => {
         const form = new FormData();
-        const {user_Id} = values;
-        form.append('user_Id', user_Id);
+        const {userId} = values;
+        form.append('userId', userId);
         try {
-            axiosApi(form, '/user/checkIdUser', 'post');
+            axiosAPI(form, '/user/checkIdUser', 'post');
 
             alert('아이디가 중복되었습니다.', {
                 position: "top-center",
@@ -128,16 +128,16 @@ const SignUp = (props: any) => {
         BeforeUnloadMethod(),
         <Formik
             initialValues={{
-                user_Id: "",
-                user_Email: "",
-                user_Nickname: "",
-                user_Password: "",
+                userId: "",
+                userEmail: "",
+                userNickname: "",
+                userPassword: "",
                 password2: "",
-                user_Phone_No: "",
-                user_Name: "",
-                user_Access_Cd: "y",
-                user_Status_Cd: "use",
-                user_Marketing_Agree: 'y'
+                userPhoneNo: "",
+                userName: "",
+                userAccessCd: "y",
+                userStatusCd: "use",
+                userMarketingAgree: 'y'
 
             }}
             validationSchema={validationSchema}
@@ -153,9 +153,9 @@ const SignUp = (props: any) => {
                           onFinish={handleSubmit}
                     >
                         <Form.Item className="input-form" label="아이디">
-                            <Input value={values.user_Id} name="user_Id" onChange={handleChange}/>
+                            <Input value={values.userId} name="userId" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Id"/>
+                                <ErrorMessage name="userId"/>
                             </div>
                             <Form.Item>
                                 <Button type="primary" htmlType="UserIdCheckUP">
@@ -164,9 +164,9 @@ const SignUp = (props: any) => {
                             </Form.Item>
                         </Form.Item>
                         <Form.Item className="input-form" label="비밀번호">
-                            <Input.Password value={values.user_Password} name="user_Password" onChange={handleChange}/>
+                            <Input.Password value={values.userPassword} name="userPassword" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Password"/>
+                                <ErrorMessage name="userPassword"/>
                             </div>
                         </Form.Item>
                         <Form.Item className="input-form" label="비밀번호 확인">
@@ -176,43 +176,29 @@ const SignUp = (props: any) => {
                             </div>
                         </Form.Item>
                         <Form.Item className="input-form" label="이메일">
-                            <Input value={values.user_Email} name="user_Email" onChange={handleChange}/>
+                            <Input value={values.userEmail} name="userEmail" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Email"/>
+                                <ErrorMessage name="userEmail"/>
                             </div>
                         </Form.Item>
                         <Form.Item className="input-form" label="휴대폰 번호">
-                            <Input value={values.user_Phone_No} name="user_Phone_No" onChange={handleChange}/>
+                            <Input value={values.userPhoneNo} name="userPhoneNo" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Phone_No"/>
+                                <ErrorMessage name="userPhoneNo"/>
                             </div>
                         </Form.Item>
                         <Form.Item className="input-form" label="닉네임">
-                            <Input value={values.user_Nickname} name="user_Nickname" onChange={handleChange}/>
+                            <Input value={values.userNickname} name="userNickname" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Nickname"/>
+                                <ErrorMessage name="userNickname"/>
                             </div>
                         </Form.Item>
                         <Form.Item className="input-form" label="이름">
-                            <Input value={values.user_Name} name="user_Name" onChange={handleChange}/>
+                            <Input value={values.userName} name="userName" onChange={handleChange}/>
                             <div className="error-message">
-                                <ErrorMessage name="user_Name"/>
+                                <ErrorMessage name="userName"/>
                             </div>
                         </Form.Item>
-                        {/*<Form.Item className="input-form" label="약관">*/}
-                        {/*    <Button value={values.user_Marketing_Agree} name="user_Marketing_Agree"*/}
-                        {/*            onChange={handleChange}/>*/}
-                        {/*    <div className="error-message">*/}
-                        {/*        <ErrorMessage name="user_Marketing_Agree"/>*/}
-                        {/*    </div>*/}
-                        {/*</Form.Item>*/}
-                        {/*<Form.Item className="input-form" label="유저 접근권한">*/}
-                        {/*    <Checkbox value={values.user_Access_Cd} name="user_Access_Cd" onChange={handleChange}/>*/}
-                        {/*    <div className="error-message">*/}
-                        {/*        <ErrorMessage name="user_Access_Cd"/>*/}
-                        {/*    </div>*/}
-                        {/*</Form.Item>*/}
-
                         <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Submit

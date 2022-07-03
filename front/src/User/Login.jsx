@@ -1,42 +1,58 @@
-// import React, { useState} from 'react';
-// import axios from "axios";
-//
-// const form = new FormData();
-//
-// const axiosApi = (values: form, values2: any, values3: any) => {
-//
-//     axios({
-//         header: {
-//             'Content-type': 'application/json'
-//         },
-//         data: form,
-//         url: values2,
-//         method: values3,
-//     });
-// }
-//
-// //usetstate함수는 객체 형태를 받아야한다.
-// const Login = (props: any) => {
-//     const [ID, setID] = useState(); //const [상태 값 저장 변수, 상태 값 갱신 함수] = useState(상태 초기 값)
-//     const [email, setEmail] = useState();
-//     const [password, setPassword] = useState();
-//
-//     const onIDHandler = (event) => {
-//         setEmail((event.currentTarget.value))
-//     } //이벤트가 일어나는 타겟의 value를 Email값으로 업데이트해준다.
-//     const onEmailHandler = (event) => {
-//         setEmail((event.currentTarget.value))
-//     }
-//     const onSubmit = (event) => {
-//         axiosApi(form, '/login', 'get')
-//     }
-//
-//
-//     return (
-//         <div>
-//             <input onSubmit={onsubmit} />
-//         </div>
-//     );
-// }
-//
-// export default Login;
+import React, { useState } from 'react';
+import axiosAPI from '../Common/CommonAxios';
+
+function Login() {
+  const [inputId, setInputId] = useState('')
+  const [inputPw, setInputPw] = useState('')
+
+  const handleInputId = (e) => {
+    setInputId(e.target.value)
+  }
+  const handleInputPw = (e) => {
+    setInputPw(e.target.value)
+  }
+
+  const onClickLogin = () => {
+    console.log('click login')
+    console.log('ID : ', inputId)
+    console.log('PW : ', inputPw)
+    axiosAPI.post('/user/login', {
+      params: {
+        userId: inputId,
+        userPassword: inputPw
+      }
+    })
+        .then(res => {
+          console.log(res)
+          console.log('res.data.userId :: ', res.data.userId)
+          if(res.data.userId === undefined){
+            alert('입력하신 id 가 일치하지 않습니다.')
+          } else if(res.data.userPassword === null){
+            alert('입력하신 비밀번호 가 일치하지 않습니다.')
+          } else if(res.data.userId === inputId) {
+            sessionStorage.setItem('userId', inputId)
+          }
+          document.location.href = '/'
+        })
+        .catch()
+  }
+
+  return(
+      <div>
+        <h2>Login</h2>
+        <div>
+          <label htmlFor='input_id'>ID : </label>
+          <input type='text' name='input_id' value={inputId} onChange={handleInputId} />
+        </div>
+        <div>
+          <label htmlFor='input_pw'>PW : </label>
+          <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
+        </div>
+        <div>
+          <button type='button' onClick={onClickLogin}>Login</button>
+        </div>
+      </div>
+  )
+}
+
+export default Login;

@@ -1,12 +1,10 @@
-package com.factos.domain.users;
+package com.factos.domains.user;
 
+import com.factos.web.dto.UserLoginDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-
 public interface F_Users_Repository extends JpaRepository<fUser, String> {
-    //public List<fUser> findfUserByuserSeq(String UserSeq);
-//    List<UserMapping> findByUser_Id();
+    UserLoginDto findByUserIdAndUserPassword(String userId, String userPassword);
 }
 //DB Layer 접근   자
 //인터페이스로 생성

@@ -47,15 +47,8 @@ function Terms() {
         }
     }, [termCheck, personalCheck])
 
-    const termFormStyle = {
-        width: '80%',
-        marginTop: '5%',
-        marginLeft: '10%',
-        marginRight: '10%',
-        marginBottom: '5%',
-        resize: 'none'
-    }
     const nextButtonStyle = {
+
         width: '150px'
         , height: '40px'
         , fontSize: '20px'
@@ -63,6 +56,19 @@ function Terms() {
         , backgroundColor: 'red'
         , borderRadius: '30px'
         , borderColor: 'white'
+    }
+
+    const next:disable = {
+        backgroundColor : 'blue'
+   }
+
+    const termFormStyle = {
+        width: '80%',
+        marginTop: '5%',
+        marginLeft: '10%',
+        marginRight: '10%',
+        marginBottom: '5%',
+        resize: 'none'
     }
 
     const termTitleStyle = {
@@ -115,7 +121,7 @@ function Terms() {
                     <p style={{fontSize: '20px'}}><input name="termCheck" checked={allCheck} value={"selectAll"}
                                                          type="checkbox" onChange={allBtnEvent}/>모든 약관에 동의합니다</p>
                 </div>
-                <div><input style={nextButtonStyle} type="submit" disabled={disable} value={"다음"}/></div>
+                <div><input style={nextButtonStyle} id={next} type="submit" disabled={disable} value={"다음"}/></div>
             </form>
         </div>
     );
