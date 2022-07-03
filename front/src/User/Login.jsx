@@ -19,8 +19,11 @@ function Login() {
     axiosAPI.post('/user/login', {
       params: {
         userId: inputId,
-        userPassword: inputPw
+        userPassword: inputPw,
+        user_id : inputId,
+        user_Password: inputPw
       }
+      
     })
         .then(res => {
           console.log(res)

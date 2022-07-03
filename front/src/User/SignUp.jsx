@@ -4,6 +4,7 @@ import {ToastContainer} from "react-toastify";
 import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
 import axiosAPI from '../Common/CommonAxios';
+
 const form = new FormData();
 
 // const axiosApi = (values: form, values2: any, values3: any) => {
@@ -112,6 +113,8 @@ const SignUp = (props: any) => {
         const form = new FormData();
         const {userId} = values;
         form.append('userId', userId);
+        const { user_Id } = values;
+        form.append('user_Id', user_Id);
         try {
             axiosAPI(form, '/user/checkIdUser', 'post');
 

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 //lombok은 서비스 초기 구축 단계에서 테이블 설계의 변경이 빈번한데에 코드 변경량을 최소화시켜주어 좋음
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,23 +15,20 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor //기본 생성자 자동 추가
 @Entity //테이블이 링크될 클래스임을 알림
-//@IdClass(fUserKey.class)
 @Table(name = "f_user")
 public class fUser implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
 
-//    @Id //PK임을 알림
 //    @GeneratedValue(strategy = GenerationType.IDENTITY) //PK생성규칙 IDENTITY를 추가해줘야 auto_increment
     @Column(name = "user_Id", length = 50, nullable = false)//column을 나타냄(굳이 없어도 default임) 사용하는 이유는 그 외적 기본값 변경이 필요할 떄
     private String userId;
     //유저아이디
 
-    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Id //@Id //PK임을 알림
     @Column(name = "user_Seq", length = 10, nullable = false)
     private String userSeq;
     //유저 고유번호

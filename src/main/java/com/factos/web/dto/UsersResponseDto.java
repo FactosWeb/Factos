@@ -3,8 +3,6 @@ package com.factos.web.dto;
 import com.factos.domains.user.fUser;
 import lombok.Getter;
 
-import java.util.Date;
-
 @Getter
 public class UsersResponseDto {
     private String userId;

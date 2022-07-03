@@ -1,4 +1,4 @@
-package com.factos.web.dto;
+package com.factos.web.dto.users;
 
 import com.factos.domains.user.fUser;
 import lombok.Builder;
@@ -22,6 +22,7 @@ public class UsersSaveRequestDto {
     private String userAccessCd;
     private String userJoinDt;
     private String userSecessionDt;
+
     @Builder
     public UsersSaveRequestDto(String userId, String userName, String userEmail, String userAccessCd, String userPhoneNo, String userJoinDt,
                             String userNickname, String userMarketingAgreeYn, String userPassword, String userSeq, String userStatusCd, String userSecessionDt) {

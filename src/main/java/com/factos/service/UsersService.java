@@ -2,7 +2,6 @@ package com.factos.service;
 
 import com.factos.domains.user.F_Users_Repository;
 import com.factos.domains.user.fUser;
-import com.factos.web.dto.UserIdCheckDto;
 import com.factos.web.dto.UserLoginDto;
 import com.factos.web.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +30,6 @@ public class UsersService {
         return new UsersResponseDto(entity);
     }
 
-    public UserIdCheckDto checkById(String userId){
-        fUser entity = usersRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("없다"));
-        return new UserIdCheckDto(userId);
-    }
-
     public boolean login(fUser user) {
 
         UserLoginDto findUser = usersRepository.findByUserIdAndUserPassword(user.getUserId(), user.getUserPassword());
@@ -43,7 +37,7 @@ public class UsersService {
         if(findUser == null){
             return false;
         }
-        if(!findUser.getLoginPassword().equals(user.getUserPassword())){
+        if(!findUser.getUserPassword().equals(user.getUserPassword())){
             return false;
         }
         return true;
@@ -55,6 +49,7 @@ public class UsersService {
 
     @Transactional
     public fUser signUpUser(fUser user) {
+        duplicateIdCheck(user);
         return usersRepository.save(user);
     }
 
@@ -64,5 +59,4 @@ public class UsersService {
             throw new IllegalStateException("존재하는 아이디입니다.");
          }
     }
-
 }

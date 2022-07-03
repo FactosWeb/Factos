@@ -9,12 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserLoginDto {
-    private String loginId;
-    private String loginPassword;
+    private String userId;
+    private String userPassword;
 
     @Builder
     public UserLoginDto(String loginId, String loginPassword) {
-        this.loginId = loginId;
-        this.loginPassword = loginPassword;
+        this.userId = loginId;
+        this.userPassword = loginPassword;
     }
 }

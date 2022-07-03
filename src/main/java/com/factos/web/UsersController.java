@@ -5,9 +5,7 @@ import com.factos.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,18 +21,17 @@ public class UsersController {
      * 로그인
      * return ResponseEntity
      * param = fUser
-     *
-     * */
+     */
     @PostMapping("/user/login")
     public ResponseEntity loginUser(fUser user) {
         if (usersService.login(user)) {
             return new ResponseEntity<>("/", HttpStatus.OK);
         } else {
+            System.out.println(user.getUserId());
+            System.out.println(user.getUserPassword());
             return new ResponseEntity<>("", HttpStatus.FORBIDDEN);
-
         }
     }
-
     /**
      * 회원가입
      * return ResponseEntity

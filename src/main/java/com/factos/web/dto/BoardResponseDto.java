@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.util.Date;
 
 @Getter
+
 public class BoardResponseDto {
     private String bd_No;
     private String bd_Borad_Cd;

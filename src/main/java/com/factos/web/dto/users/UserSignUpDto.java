@@ -1,4 +1,4 @@
-package com.factos.web.dto;
+package com.factos.web.dto.users;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -19,10 +19,17 @@ public class UserSignUpDto {
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
     private String userPassword;
-   
+
+    @NotBlank(message = "닉네임은 필수 입력 값입니다.")
     private String userNickname;
+
+    @NotBlank(message = "이메일은 필수 입력 값입니다.")
     private String userEmail;
-    private String userPhone_No;
+
+    @NotBlank(message = "폰 번호는 필수 입력 값입니다.")
+    private String userPhoneNo;
+
+    @NotBlank(message = "이름은 필수 입력 값입니다.")
     private String userName;
     private String userMarketingAgree;
     private String userAccessCd;
@@ -38,15 +45,10 @@ public class UserSignUpDto {
         this.userNickname = userNickname;
         this.userPassword = userPassword;
         this.userName = userName;
-        this.userPhone_No = userPhoneNo;
+        this.userPhoneNo = userPhoneNo;
         this.userMarketingAgree =userMarketingAgree;
         this.userAccessCd = userAccessCd;
         this.userStatusCd = userStatusCd;
-    }
-
-    @Builder
-    public UserSignUpDto(String userId){
-        this.userId = userId;
     }
 
 }
