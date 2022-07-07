@@ -5,20 +5,8 @@ import {Formik, ErrorMessage} from "formik";
 import {Form, Input, Button, Checkbox} from 'antd'
 import axiosAPI from '../Common/CommonAxios';
 
-const form = new FormData();
 
-// const axiosApi = (values: form, values2: any, values3: any) => {
-//     axios({
-//         header: {
-//             'Content-type': 'application/json'
-//         },
-//         data: form,
-//         url: values2,
-//         method: values3,
-//     });
-// }
-
-const BeforeUnloadMethod =() => {
+const BeforeUnloadMethod = () => {
     const preventClose = (e: BeforeUnloadEvent) => {
         e.preventDefault();
         e.returnValue = ""; //Chrome에서 동작하도록;deprecated
@@ -52,7 +40,7 @@ const SignUp = (props: any) => {
         userNickname: Yup
             .string()
             .required("이름을 입력하세요!"),
-        userPhone_No: Yup
+        userPhoneNo: Yup
             .string()
             .matches(phoneRegEXp, '올바른 휴대폰 번호형식이 아닙니다.')
             .required("휴대폰 번호를 입력하세요"),
@@ -68,8 +56,8 @@ const SignUp = (props: any) => {
 
 
     const submit = async (values: any) => {
+        const form = FormData();
 
-        console.log(values);
         const {
             userId,
             userEmail,
@@ -82,135 +70,114 @@ const SignUp = (props: any) => {
             userMarketingAgree
         } = values;
 
-        const params = {
-            userId : userId,
-            userName: userName,
-            userEmail: userEmail,
-            userPassword: userPassword,
-            userMarketingAgree: userMarketingAgree,
-            userAccessCd: userAccessCd,
-            userPhoneNo: userPhoneNo,
-            userStatusCd: userStatusCd,
-            userNickname: userNickname
-        }
-        
-        try {
-            const res = await axiosAPI.post("/user/signUpUser", params)
-            console.log(res.data)
+        form.append('userId', userId)
+        form.append('userName', userName)
+        form.append('userEmail', userEmail)
+        form.append('userPassword', userPassword)
+        form.append('userMarketingAgree', userMarketingAgree)
+        form.append('userAccessCd', userAccessCd)
+        form.append('userPhoneNo', userPhoneNo)
+        form.append('userStatusCd', userStatusCd)
+        form.append('userNickname', userNickname)
 
-            alert('회원등록 완료하였습니다. 로그인 하세요', {
-                position: "top-center",
-            })
-            ;
-        } catch (e) {
-            alert('실패하였습니다. 다시 시도하세요', {
-                position: "top-center",
-            });
-        }
+        await axiosAPI.post("/user/signUpUser", form).then(res => {
+            if (res.data.result == 'OK') {
+                console.log(res.data.data)
+                alert('회원등록 완료하였습니다. 로그인 하세요', {
+                    position: "top-center",
+                })
+            } else {
+                alert('실패하였습니다. 다시 시도하세요', {
+                    position: "top-center",
+                });
+            }
+        });
     }
 
-    const UserIdCheckUP = async (values: any) => {
-        const form = new FormData();
-        const {userId} = values;
-        form.append('userId', userId);
-        const { user_Id } = values;
-        form.append('user_Id', user_Id);
-        try {
-            axiosAPI(form, '/user/checkIdUser', 'post');
-
-            alert('아이디가 중복되었습니다.', {
-                position: "top-center",
-            });
-        } catch (e) {
-            alert('사용할 수 있는 아이디입니다.', {
-                position: "top-center",
-            });
-        }
-    }
     return (
         BeforeUnloadMethod(),
-        <Formik
-            initialValues={{
-                userId: "",
-                userEmail: "",
-                userNickname: "",
-                userPassword: "",
-                password2: "",
-                userPhoneNo: "",
-                userName: "",
-                userAccessCd: "y",
-                userStatusCd: "use",
-                userMarketingAgree: 'y'
+            <Formik
+                initialValues={{
+                    userId: "",
+                    userEmail: "",
+                    userNickname: "",
+                    userPassword: "",
+                    password2: "",
+                    userPhoneNo: "",
+                    userName: "",
+                    userAccessCd: "y",
+                    userStatusCd: "use",
+                    userMarketingAgree: 'y'
 
-            }}
-            validationSchema={validationSchema}
-            onSubmit={submit}
-            onIdCheck={UserIdCheckUP}
-        >
-            {({values, handleReset, handleSubmit, handleChange, resetForm}) => (
-                <div className="signup-wrapper">
-                    <ToastContainer/>
-                    <Form redirect="/posts"
-                          layout="vertical"
-                          autoComplete="off"
-                          onFinish={handleSubmit}
-                    >
-                        <Form.Item className="input-form" label="아이디">
-                            <Input value={values.userId} name="userId" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userId"/>
-                            </div>
+                }}
+                validationSchema={validationSchema}
+                onSubmit={submit}
+            >
+                {({values, handleReset, handleSubmit, handleChange, resetForm}) => (
+                    <div className="signup-wrapper">
+                        <ToastContainer/>
+                        <Form redirect="/posts"
+                              layout="vertical"
+                              autoComplete="off"
+                              onFinish={handleSubmit}
+                        >
+                            <Form.Item className="input-form" label="아이디">
+                                <Input value={values.userId} name="userId" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userId"/>
+                                </div>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="UserIdCheckUP">
+                                        Submit
+                                    </Button>
+                                </Form.Item>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="비밀번호">
+                                <Input.Password value={values.userPassword} name="userPassword"
+                                                onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userPassword"/>
+                                </div>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="비밀번호 확인">
+                                <Input.Password value={values.password2} name="password2" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="password2"/>
+                                </div>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="이메일">
+                                <Input value={values.userEmail} name="userEmail" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userEmail"/>
+                                </div>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="휴대폰 번호">
+                                <Input value={values.userPhoneNo} name="userPhoneNo" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userPhoneNo"/>
+                                </div>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="닉네임">
+                                <Input value={values.userNickname} name="userNickname" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userNickname"/>
+                                </div>
+                            </Form.Item>
+                            <Form.Item className="input-form" label="이름">
+                                <Input value={values.userName} name="userName" onChange={handleChange}/>
+                                <div className="error-message">
+                                    <ErrorMessage name="userName"/>
+                                </div>
+                            </Form.Item>
                             <Form.Item>
-                                <Button type="primary" htmlType="UserIdCheckUP">
+                                <Button type="primary" htmlType="submit">
                                     Submit
                                 </Button>
                             </Form.Item>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="비밀번호">
-                            <Input.Password value={values.userPassword} name="userPassword" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userPassword"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="비밀번호 확인">
-                            <Input.Password value={values.password2} name="password2" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="password2"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="이메일">
-                            <Input value={values.userEmail} name="userEmail" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userEmail"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="휴대폰 번호">
-                            <Input value={values.userPhoneNo} name="userPhoneNo" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userPhoneNo"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="닉네임">
-                            <Input value={values.userNickname} name="userNickname" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userNickname"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item className="input-form" label="이름">
-                            <Input value={values.userName} name="userName" onChange={handleChange}/>
-                            <div className="error-message">
-                                <ErrorMessage name="userName"/>
-                            </div>
-                        </Form.Item>
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit">
-                                Submit
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </div>
-            )}
-        </Formik>
+                        </Form>
+                    </div>
+                )}
+            </Formik>
     );
 }
 export default SignUp;

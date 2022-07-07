@@ -39,11 +39,15 @@ public class UsersController {
      */
     @PostMapping("/user/signUpUser")
     public ResponseEntity signUpUser(fUser user) {
-        try {
-            usersService.signUpUser(user);
-            return new ResponseEntity<>(user.getUserId(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+        if (usersService.findById(user.getUserId()) == null){
+            try {
+                usersService.signUpUser(user);
+                return new ResponseEntity<>(user.getUserId(), HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            }
         }
+
+        return new ResponseEntity<>("아이디가 중복되었습니다.", HttpStatus.FORBIDDEN);
     }
 }
