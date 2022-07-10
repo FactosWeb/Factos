@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import Admin from "./Admin.css"
 import AdminLayout from "../Route/AdminLayout";
 import axios from "axios";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 function BoardSetting() {
 
     const [BoardList, setBoardList] = useState(null);
@@ -41,6 +43,7 @@ function BoardSetting() {
                     </select>
                     <input type="text" id="schParam"/>
                     <button>검색</button>
+                    <button>글쓰기</button>
                     <table className="MainTable">
                         <thead>
                         <tr>
@@ -112,9 +115,30 @@ function BoardSetting() {
                         </tbody>
                     </table>
                 </div>
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data="<p>Hello from CKEditor 5!</p>"
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        console.log( { event, editor, data } );
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
             </div>
+
         )
     );
+
+
 }
 
 export default BoardSetting;
