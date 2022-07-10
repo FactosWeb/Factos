@@ -2,16 +2,10 @@ package com.factos.service;
 
 import com.factos.domain.users.F_Board_Repository;
 import com.factos.domain.users.fBoard;
-import com.factos.domain.users.fUser;
-import com.factos.web.dto.BoardResponseDto;
-import com.factos.web.dto.UsersResponseDto;
-import com.factos.web.dto.UsersUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -15,7 +15,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-
 public class CommentController {
 
     @Autowired

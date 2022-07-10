@@ -1,7 +1,5 @@
 package com.factos.web;
 
-import com.factos.domain.users.F_Board_Repository;
-import com.factos.domain.users.F_Users_Repository;
 import com.factos.domain.users.fBoard;
 import com.factos.service.BoardService;
 import lombok.RequiredArgsConstructor;

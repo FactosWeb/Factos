@@ -1,52 +1,64 @@
 com/factos/web/dto/BoardResponseDto.java
  com.factos.web.dto.BoardResponseDto
-com/factos/web/dto/UsersResponseDto.java
- com.factos.web.dto.UsersResponseDto
-com/factos/service/BoardService.java
- com.factos.service.BoardService
-com/factos/web/dto/CommentResponseDto.java
- com.factos.web.dto.CommentResponseDto
-com/factos/service/CommentService.java
- com.factos.service.CommentService
-com/factos/domain/users/fBoard.java
- com.factos.domain.users.fBoard
- com.factos.domain.users.fBoard$fBoardBuilder
-com/factos/service/UsersService.java
- com.factos.service.UsersService
+com/factos/Application.java
+ com.factos.Application
+com/factos/web/BoardController.java
+ com.factos.web.BoardController
 com/factos/domain/users/F_Board_Repository.java
  com.factos.domain.users.F_Board_Repository
 com/factos/web/HelloController.java
  com.factos.web.HelloController
-com/factos/domain/users/F_Users_Repository.java
- com.factos.domain.users.F_Users_Repository
-com/factos/web/BoardController.java
- com.factos.web.BoardController
-com/factos/web/UsersController.java
- com.factos.web.UsersController
-com/factos/web/dto/UserSignUpDto.java
- com.factos.web.dto.UserSignUpDto
- com.factos.web.dto.UserSignUpDto$UserSignUpDtoBuilder
+com/factos/web/dto/users/User.java
+ com.factos.web.dto.users.User
+ com.factos.web.dto.users.User$singUp
+com/factos/domain/users/fBoard.java
+ com.factos.domain.users.fBoard
+ com.factos.domain.users.fBoard$fBoardBuilder
+com/factos/service/CommentService.java
+ com.factos.service.CommentService
+com/factos/web/dto/users/UserLoginDto.java
+ com.factos.web.dto.users.UserLoginDto
 com/factos/web/CommentController.java
  com.factos.web.CommentController
-com/factos/domain/users/F_Comment_Repository.java
- com.factos.domain.users.F_Comment_Repository
 com/factos/domain/users/fComment.java
  com.factos.domain.users.fComment
  com.factos.domain.users.fComment$fCommentBuilder
-com/factos/Application.java
- com.factos.Application
-com/factos/domain/users/fUserKey.java
- com.factos.domain.users.fUserKey
-com/factos/web/dto/UsersUpdateRequestDto.java
- com.factos.web.dto.UsersUpdateRequestDto
- com.factos.web.dto.UsersUpdateRequestDto$UsersUpdateRequestDtoBuilder
+com/factos/common/Result.java
+ com.factos.common.Result
+com/factos/web/dto/UserIdCheckDto.java
+ com.factos.web.dto.UserIdCheckDto
+com/factos/web/dto/users/UsersUpdateRequestDto.java
+ com.factos.web.dto.users.UsersUpdateRequestDto
+ com.factos.web.dto.users.UsersUpdateRequestDto$UsersUpdateRequestDtoBuilder
 com/factos/web/dto/HelloResponseDto.java
  com.factos.web.dto.HelloResponseDto
-com/factos/web/dto/UsersSaveRequestDto.java
- com.factos.web.dto.UsersSaveRequestDto
- com.factos.web.dto.UsersSaveRequestDto$UsersSaveRequestDtoBuilder
 com/factos/web/MainController.java
  com.factos.web.MainController
-com/factos/domain/users/fUser.java
- com.factos.domain.users.fUser
- com.factos.domain.users.fUser$fUserBuilder
+com/factos/web/dto/users/UserSignUpDto.java
+ com.factos.web.dto.users.UserSignUpDto
+ com.factos.web.dto.users.UserSignUpDto$UserSignUpDtoBuilder
+com/factos/domain/users/F_Comment_Repository.java
+ com.factos.domain.users.F_Comment_Repository
+com/factos/service/BoardService.java
+ com.factos.service.BoardService
+com/factos/web/dto/CommentResponseDto.java
+ com.factos.web.dto.CommentResponseDto
+com/factos/web/dto/UserLoginDto.java
+ com.factos.web.dto.UserLoginDto
+ com.factos.web.dto.UserLoginDto$UserLoginDtoBuilder
+com/factos/web/dto/users/UsersSaveRequestDto.java
+ com.factos.web.dto.users.UsersSaveRequestDto
+ com.factos.web.dto.users.UsersSaveRequestDto$UsersSaveRequestDtoBuilder
+com/factos/web/dto/UsersResponseDto.java
+ com.factos.web.dto.UsersResponseDto
+com/factos/domains/user/F_Users_Repository.java
+ com.factos.domains.user.F_Users_Repository
+com/factos/service/UsersService.java
+ com.factos.service.UsersService
+com/factos/domains/user/fUser.java
+ com.factos.domains.user.fUser
+ com.factos.domains.user.fUser$fUserBuilder
+com/factos/web/dto/users/UsersResponseDto.java
+ com.factos.web.dto.users.UsersResponseDto
+com/factos/web/UsersController.java
+ com.factos.web.UsersController
