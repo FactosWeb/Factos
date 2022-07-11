@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -30,14 +31,24 @@ public class UsersService {
         return new UsersResponseDto(entity);
     }
 
+    public void deleteAlluser() {
+        usersRepository.deleteAll();
+    }
+
+    public List<fUser> findAll() {
+        List<fUser> entity = usersRepository.findAll();
+
+        return entity;
+    }
+
     public boolean login(fUser user) {
 
         UserLoginDto findUser = usersRepository.findByUserIdAndUserPassword(user.getUserId(), user.getUserPassword());
 
-        if(findUser == null){
+        if (findUser == null) {
             return false;
         }
-        if(!findUser.getUserPassword().equals(user.getUserPassword())){
+        if (!findUser.getUserPassword().equals(user.getUserPassword())) {
             return false;
         }
         return true;
@@ -53,10 +64,10 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
-    private void duplicateIdCheck(fUser user){
+    private void duplicateIdCheck(fUser user) {
         Optional<fUser> checkId = usersRepository.findById(user.getUserId());
-         if(checkId != null){
+        if (checkId != null) {
             throw new IllegalStateException("존재하는 아이디입니다.");
-         }
+        }
     }
 }
