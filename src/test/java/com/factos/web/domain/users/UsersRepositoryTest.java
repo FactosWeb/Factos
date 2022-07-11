@@ -1,8 +1,7 @@
 package com.factos.web.domain.users;
 
-import com.factos.domain.users.fUser;
-import com.factos.domain.users.F_Users_Repository;
-import org.junit.After;
+import com.factos.domains.user.fUser;
+import com.factos.domains.user.F_Users_Repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,25 +32,25 @@ public class UsersRepositoryTest {
         Date date = new Date();
 
         f_users_repository.save(fUser.builder()
-                .user_Name("choi")
-                .user_Id("jaeseok")
-                .user_Email("1")
-                .user_Access_Cd("1")
-                .user_Join_Dt(date)
-                .user_Nickname("1")
-                .user_Password("1")
-                .user_Phone_No("1")
-                .user_Seq("1")
-                .user_Marketing_Agree_Yn("Y")
-                .user_Status_Cd("1")
-                .user_Secession_Dt(date)
+                .userName("choi")
+                .userId("jaeseok")
+                .userEmail("1")
+                .userAccessCd("1")
+                .userJoinDt("2022-6-12")
+                .userNickname("1")
+                .userPassword("1")
+                .userPhoneNo("1")
+                .userSeq("1")
+                .userMarketingAgreeYn("Y")
+                .userStatusCd("1")
+                .userSecessionDt("2022-6-12")
                 .build());
 
         List<fUser> f_usersList = f_users_repository.findAll();
 
         fUser f_user = f_usersList.get(0);
-        assertThat(f_user.getUser_Name()).isEqualTo(userName);
-        assertThat(f_user.getUser_Id()).isEqualTo(userId);
+        assertThat(f_user.getUserName()).isEqualTo(userName);
+        assertThat(f_user.getUserId()).isEqualTo(userId);
 
     }
 }

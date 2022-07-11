@@ -8,7 +8,7 @@ const NavigationBar = () => {
             <div>
                 <nav className="navbar">
                     <div>
-                        <a href=""><h5>Factos</h5></a>
+                        <a href="Main"><h5>Factos</h5></a>
                     </div>
                     <div className="information">
                     <input type="text" placeholder={"키워드를 입력하세요"}/>
@@ -31,14 +31,11 @@ const NavigationBar = () => {
 
                     <ul className="information">
                         <li><a href="/login">로그인</a></li>
-                        <li><a href="/signup">회원가입</a></li>
+                        <li><a href="/terms">회원가입</a></li>
                     </ul>
                 </nav>
             </div>
-
-
         </header>
-
     );
 };
 
