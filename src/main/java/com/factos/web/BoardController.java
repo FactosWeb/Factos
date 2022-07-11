@@ -25,17 +25,19 @@ public class BoardController {
         return usersService.findById(BoardNo);
     }*/
 
-
+    //구정훈사용
     @GetMapping("/getBoardAllList")
     public List<fBoard> findAll (){
         return boardService.findAll();
     }
 
+    //구정훈사용
     @PostMapping("/deleteAllBoard")
     public void deleteAlluser(){
         boardService.deleteAllBoardList();
     }
 
+    //구정훈사용
     @PostMapping("/deleteBoard/{BoardNo}")
     public void deleteUser(@PathVariable String BoardNo){
         boardService.deleteBoard(BoardNo);
