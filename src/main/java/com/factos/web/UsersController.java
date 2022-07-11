@@ -29,23 +29,23 @@ public class UsersController {
     public List<fUser> update(@RequestBody UsersUpdateRequestDto requestDto) {
         return usersService.update(requestDto);
     }
-
+    //구정훈사용
     @GetMapping("/getUserList/{userId}")
     public UsersResponseDto findById(@PathVariable String userId) {
         return usersService.findById(userId);
     }
 
-
+    //구정훈사용
     @GetMapping("/getUserAllList")
     public List<fUser> findAll() {
         return usersService.findAll();
     }
-
+    //구정훈사용
     @PostMapping("/deleteAllUser")
     public void deleteAlluser() {
         usersService.deleteAlluser();
     }
-
+    //구정훈사용
     @PostMapping("/deleteUser/{userId}")
     public void deleteUser(@PathVariable String userId) {
         usersService.deleteUser(userId);

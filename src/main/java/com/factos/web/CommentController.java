@@ -24,24 +24,24 @@ public class CommentController {
 /*    @PostMapping("/saveBoard") //view단에서 submit방식으로 호출해야함
     public List<fBoard> update(@RequestBody UsersUpdateRequestDto requestDto){
         return boardService.update(requestDto);
-    }*/
+    }
 
-/*    @GetMapping("/getBoardList/{BoardNo}")
+    @GetMapping("/getBoardList/{BoardNo}")
     public UsersResponseDto findById (@PathVariable String BoardNo){
         return usersService.findById(BoardNo);
     }*/
 
-
+    //구정훈사용
     @GetMapping("/getCommentAllList")
     public List<fComment> findAll (){
         return commentService.findAll();
     }
-
+    //구정훈사용
     @PostMapping("/deleteAllComment")
     public void deleteAllComment(){
         commentService.deleteAllCommentList();
     }
-
+    //구정훈사용
     @PostMapping("/deleteComment/{CommentNo}")
     public void deleteComment(@PathVariable String BoardNo){
         commentService.deleteComment(BoardNo);
