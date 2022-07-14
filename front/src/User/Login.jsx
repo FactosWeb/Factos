@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axiosAPI from '../Common/CommonAxios';
+import Button from '@mui/material/Button';
 
 function Login() {
   const [inputId, setInputId] = useState('')
@@ -23,7 +24,7 @@ function Login() {
         user_id : inputId,
         user_Password: inputPw
       }
-      
+
     })
         .then(res => {
           console.log(res)
@@ -43,19 +44,20 @@ function Login() {
   return(
       <div>
         <h2>Login</h2>
-        <div>
-          <label htmlFor='input_id'>ID : </label>
-          <input type='text' name='input_id' value={inputId} onChange={handleInputId} />
-        </div>
-        <div>
-          <label htmlFor='input_pw'>PW : </label>
-          <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
-        </div>
-        <div>
-          <button type='button' onClick={onClickLogin}>Login</button>
+              <label htmlFor='input_id'>ID : </label>
+              <input type='text' name='input_id' value={inputId} onChange={handleInputId} />
+
+          <div>
+              <label htmlFor='input_pw'>PW : </label>
+              <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
+          </div>
+
+          <div>
+          <Button type='button' onClick={onClickLogin}>Login</Button>
         </div>
       </div>
   )
 }
+
 
 export default Login;

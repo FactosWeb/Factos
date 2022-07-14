@@ -1,78 +1,57 @@
-
-import React, {useEffect, useState} from 'react';
-import {useBeforeunload} from "react-beforeunload"; // 회원가입페이지에서 뒤로왔을 때 폼이 초기화되어있어야한다,
+import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 //전체 체크 기능, 개별 체크 기능, 모든 체크박스 체크시 전체 체크도 체크
 
 function Terms() {
-    const [allCheck, setAllCheck] = useState(false);
-    const [termCheck, setTermCheck] = useState(false);
-    const [personalCheck, setPersonalCheck] = useState(false);
-    const [disable, setDisable] = useState(true);
+    const [checked, setChecked] = React.useState([false, false]);
+    const [disabled, setDisabled] = useState(true);
 
-    const allBtnEvent = () => {
-        if (allCheck === false) {
-            setAllCheck(true);
-            setTermCheck(true);
-            setPersonalCheck(true);
-        } else {
-            setAllCheck(false);
-            setTermCheck(false);
-            setPersonalCheck(false);
-        }
+    const allCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked([event.target.checked, event.target.checked]);
     };
 
-    const termBtnEvent = () => {
-        if (termCheck === false) {
-            setTermCheck(true)
-        } else {
-            setTermCheck(false)
-        }
+    const check1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked([event.target.checked, checked[1]]);
     };
 
-    const personalBtnEvent = () => {
-        if (personalCheck === false) {
-            setPersonalCheck(true)
-        } else {
-            setPersonalCheck(false)
-        }
+    const check2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked([checked[0], event.target.checked]);
     };
-
     useEffect(() => {
-        if (termCheck === true && personalCheck === true) {
-            setAllCheck(true)
-            setDisable(false)
-        } else {
-            setAllCheck(false)
-            setDisable(true)
+        if (!checked[1] && !checked[2]) {
+            setDisabled(true)
         }
-    }, [termCheck, personalCheck])
+        else {
+            setDisabled(false)
+        }
+    }, [checked[0], checked[1]])
 
     const termFormStyle = {
-        width: '80%',
-        marginTop: '5%',
-        marginLeft: '10%',
-        marginRight: '10%',
+        width       : '80%',
+        marginTop   : '5%',
+        marginLeft  : '10%',
+        marginRight : '10%',
         marginBottom: '5%',
-        resize: 'none'
+        resize      : 'none'
     }
     const nextButtonStyle = {
-        width: '150px'
-        , height: '40px'
-        , fontSize: '20px'
-        , color: 'white'
-        , backgroundColor: 'red'
-        , borderRadius: '30px'
-        , borderColor: 'white'
+        width            : '150px'
+        , height         : '40px'
+        , fontSize       : '20px'
+        , borderRadius   : '30px'
+        , borderColor    : 'white'
     }
 
     const termTitleStyle = {
-        textAlign: 'left',
+        textAlign : 'left',
         marginLeft: '10%',
-        fontSize: '20px',
-        height: '100%',
-        width: '80%'
+        fontSize  : '20px',
+        height    : '100%',
+        width     : '80%'
     }
 
     return (
@@ -85,9 +64,10 @@ function Terms() {
                               style={{height: '100%', width: '80%', resize: "none"}} rows={20}></textarea>
                 </div>
                 <div>
-                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={termCheck} autocomplete="off"
-                                                         type="checkbox" onChange={termBtnEvent}/>이용약관을 읽었으며,해당 내용에
-                        동의합니다 <strong>(필수)</strong>
+                    <p style={{fontSize: '20px'}}>
+                        <FormControlLabel label="이용약관을 읽었으며,해당 내용에 동의합니다"
+                        control={<Checkbox defaultChecked color="error" checked={checked[0]} onChange={check1}/>}/>
+                         <strong>(필수)</strong>
                     </p>
                 </div>
                 <br/>
@@ -97,15 +77,17 @@ function Terms() {
                               style={{height: '100%', width: '80%', resize: "none"}} rows={20}></textarea>
                 </div>
                 <div>
-                    <p style={{fontSize: '20px'}}><input name="personalCheck" checked={personalCheck} autocomplete="off"
-                                                         type="checkbox" onChange={personalBtnEvent}/>이용약관을 확인하였으며,
-                        약관에
-                        동의합니다 <strong>(필수)</strong></p>
+                    <p style={{fontSize: '20px'}}>
+                        <FormControlLabel label="이용약관을 확인하였으며, 약관에 동의합니다"
+                        control={<Checkbox defaultChecked color="error" checked={checked[1]} onChange={check2}/>}/>
+                    <strong>(필수)</strong></p>
                     <br/>
-                    <p style={{fontSize: '20px'}}><input name="termCheck" checked={allCheck} value={"selectAll"} autocomplete="off"
-                                                         type="checkbox" onChange={allBtnEvent}/>모든 약관에 동의합니다</p>
+                    <p style={{fontSize: '20px'}}>
+                        <FormControlLabel  label="모든 약관에 동의합니다"
+                        control={<Checkbox defaultChecked color="error" checked={checked[0] && checked[1]} indeterminate={checked[0] !== checked[1]} onChange={allCheck}/>}/>
+                        </p>
                 </div>
-                <div><input style={nextButtonStyle} type="submit" disabled={disable} value={"다음"}/></div>
+                <div><Button variant="contained" color="error" style={nextButtonStyle} type="submit" disabled={disabled}> 다음</Button></div>
             </form>
         </div>
     );

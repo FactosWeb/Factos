@@ -6,6 +6,19 @@
   height: 40vmin;
   pointer-events: none;
 }
+.html{
+  height: 100vw;
+  width: 100vw;
+}
+.body{
+  height: 100vw;
+  width: 100vw;
+}
+
+.dvsz {
+  height: 100vw;
+  width: 100vw;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
