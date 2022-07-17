@@ -7,12 +7,12 @@ import Main from "../Main/Main"
 import UserSetting from "../Admin/UserSetting";
 import BoardSetting from "../Admin/BoardSetting";
 import CommentSetting from "../Admin/CommentSetting";
-import editor from "../Admin/Editor";
-import test from "../Admin/test";
+import Editor from "../Admin/Editor";
+import Test from "../Admin/test";
 
 const FactosRouter = () => {
     return (
-        <div>
+        <div style={{height : '80vh' }}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/main" element={<Main/>}/>
@@ -22,8 +22,8 @@ const FactosRouter = () => {
                     <Route path="/UserSetting" element={<UserSetting/>}/>
                     <Route path="/BoardSetting" element={<BoardSetting/>}/>
                     <Route path="/CommentSetting" element={<CommentSetting/>}/>
-                    <Route path="/editor" element={<editor/>}/>
-                    <Route path="/test" element={<test/>}/>
+                    <Route path="/editor" element={<Editor/>}/>
+                    <Route path="/test" element={<Test/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
